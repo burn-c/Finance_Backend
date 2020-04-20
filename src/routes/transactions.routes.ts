@@ -5,7 +5,7 @@ import TransactionsRepository from '../repositories/TransactionsRepository';
 import CategoriesRepository from '../repositories/CategoriesRepository';
 import CreateTransactionService from '../services/CreateTransactionService';
 
-// import DeleteTransactionService from '../services/DeleteTransactionService';
+import DeleteTransactionService from '../services/DeleteTransactionService';
 // import ImportTransactionsService from '../services/ImportTransactionsService';
 
 const transactionsRouter = Router();
@@ -37,9 +37,16 @@ transactionsRouter.post('/', async (request, response) => {
   return response.json(transaction);
 });
 
-// transactionsRouter.delete('/:id', async (request, response) => {
-//   // TODO
-// });
+// Delete transaction
+transactionsRouter.delete('/:id', async (request, response) => {
+  const { id } = request.params;
+
+  const deleteTrasaction = new DeleteTransactionService();
+
+  const status = await deleteTrasaction.execute(id);
+
+  return response.status(200).json(status);
+});
 
 // transactionsRouter.post('/import', async (request, response) => {
 //   // TODO
