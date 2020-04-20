@@ -1,6 +1,8 @@
 // import AppError from '../errors/AppError';
 import { getCustomRepository } from 'typeorm';
 
+import AppError from '../errors/AppError';
+
 import Transaction from '../models/Transaction';
 import TransactionRepository from '../repositories/TransactionsRepository';
 
@@ -19,6 +21,13 @@ class CreateTransactionService {
     category_id,
   }: Request): Promise<Transaction> {
     const transactionsRepositories = getCustomRepository(TransactionRepository);
+
+    if (type === 'outcome') {
+      const { total } = await transactionsRepositories.getBalance();
+      if (value > total) {
+        throw new AppError('Insufficient funds', 400);
+      }
+    }
 
     const transaction = transactionsRepositories.create({
       title,
