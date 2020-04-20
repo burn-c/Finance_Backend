@@ -9,8 +9,10 @@ export default class CreateCategories1587334970728
         columns: [
           {
             name: 'id',
-            type: 'int',
+            type: 'uuid',
             isPrimary: true,
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
           },
           {
             name: 'title',

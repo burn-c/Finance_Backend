@@ -2,7 +2,9 @@ import { Router } from 'express';
 import { getCustomRepository } from 'typeorm';
 
 import TransactionsRepository from '../repositories/TransactionsRepository';
+import CategoriesRepository from '../repositories/CategoriesRepository';
 import CreateTransactionService from '../services/CreateTransactionService';
+
 // import DeleteTransactionService from '../services/DeleteTransactionService';
 // import ImportTransactionsService from '../services/ImportTransactionsService';
 
@@ -18,9 +20,12 @@ transactionsRouter.get('/', async (request, response) => {
 
 // Create transaction
 transactionsRouter.post('/', async (request, response) => {
-  const { title, value, type, category_id } = request.body;
+  const { title, value, type, category } = request.body;
+  const categoriesRepository = getCustomRepository(CategoriesRepository);
 
   const createTransaction = new CreateTransactionService();
+
+  const category_id = await categoriesRepository.getCategory(category);
 
   const transaction = await createTransaction.execute({
     title,
