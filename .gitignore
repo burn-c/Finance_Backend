@@ -4,6 +4,7 @@ node_modules/
 build/
 temp/
 .env
-
+__tests__/
 tmp/*
 !tmp/.gitkeep
+tsconfig.json
