@@ -7,4 +7,4 @@ temp/
 src/__tests__/
 tmp/*
 !tmp/.gitkeep
-tsconfig.json
+
