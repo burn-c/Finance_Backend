@@ -10,19 +10,19 @@ import Transaction from './Transaction';
 @Entity('categories')
 class Category {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id!: string;
 
   @Column()
-  title: string;
+  title!: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  created_at!: Date;
 
   @CreateDateColumn()
-  updated_at: Date;
+  updated_at!: Date;
 
   @OneToMany(() => Transaction, transaction => transaction.category)
-  transaction: Transaction;
+  transaction!: Transaction;
 }
 
 export default Category;

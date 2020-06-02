@@ -12,29 +12,29 @@ import Category from './Category';
 @Entity('transactions')
 class Transaction {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id!: string;
 
   @Column()
-  title: string;
+  title!: string;
 
   @Column()
-  type: 'income' | 'outcome';
+  type!: 'income' | 'outcome';
 
   @Column()
-  value: number;
+  value!: number;
 
   @ManyToOne(() => Category, category => category.transaction, { eager: true })
   @JoinColumn({ name: 'category_id' })
-  category: Category;
+  category!: Category;
 
   @Column()
-  category_id: string;
+  category_id!: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  created_at!: Date;
 
   @CreateDateColumn()
-  updated_at: Date;
+  updated_at!: Date;
 }
 
 export default Transaction;
