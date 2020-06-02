@@ -1,16 +1,13 @@
 import 'reflect-metadata';
 import 'dotenv/config';
 import cors from 'cors';
-import { Request, Response, NextFunction } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 
 import routes from './routes';
 import AppError from './errors/AppError';
 
 import createConnection from './database';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const express = require('express');
 
 createConnection();
 const app = express();
