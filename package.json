@@ -7,12 +7,13 @@
     "node": "12.13.0"
   },
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node src/server.ts",
+    "dev": "nodemon -x ts-node src/server.ts",
     "build": "tsc",
     "postinstall": "yarn build",
     "dev:server": "ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/server.ts",
-    "start": "node build/src/index.ts",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
-    "test": "cross-env NODE_ENV=test jest"
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "@types/cors": "^2.8.6",
